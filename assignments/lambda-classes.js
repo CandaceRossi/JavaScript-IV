@@ -29,9 +29,9 @@
 
 class Person {
     constructor(attributes) {
-        name = attributes.name;
-        age = attributes.age;
-        location = attributes.location;
+        this.name = attributes.name;
+        this.age = attributes.age;
+        this.location = attributes.location;
     }
     speak() {
         return `Hello my name is ${this.name}, I am from ${this.location}`;
@@ -51,17 +51,17 @@ class Person {
 //   * `grade` receives a`student` object and a`subject` string as arguments and logs out '{student.name} receives a perfect score on {subject}'
 class Instructor extends Person {
     constructor(instructorOptions) {
-        super(this, instructorOptions);
+        super(instructorOptions);
         this.specialty = instructorOptions.specialty;
         this.favLanguage = instructorOptions.favLanguage;
         this.cathcPhrase = instructorOptions.catchPhrase;
         this.pastTime = instructorOptions.pastTime;
     }
     demo(subject) {
-        returns `Today we are learning about ${this.subject}`;
+        return `Today we are learning about ${subject}`;
     }
     grade(student, subject) {
-        returns `${this.student} receives a perfect score on ${this.subject}`;
+        return `${student.name} receives a perfect score on ${subject}`;
     }
 };
 // #### Student
@@ -79,7 +79,7 @@ class Instructor extends Person {
 
 class Student extends Person {
     constructor(studentOptions) {
-        super(this, studentOptions);
+        super(studentOptions);
         this.previousBackground = studentOptions.previousBackground;
         this.className = studentOptions.className;
         this.favSubjects = studentOptions.favSubjects;
@@ -90,24 +90,25 @@ class Student extends Person {
         }
     }
     PRAssignment(subject) {
-        if (this.subject === this.PRAssignment.)
+        console.log(`${this.name} has submitted a PR for ${subject}`);
     }
-    sprintChallenge() {
-
+    sprintChallenge(subject) {
+        console.log(`${this.name} has begun sprint challenge on ${subject}`);
     }
 };
 // #### Project Manager
 class projectManager extends Instructor {
     constructor(projectManagerOptions) {
-        super(this, projectManagerOptions);
-        gradClassName = projectManagerOptions.gradClassName;
-        favInstructor = projectManagerOptions.favInstructor;
-        favFood = projectManagerOptions.favFood;
+        super(projectManagerOptions);
+        this.gradClassName = projectManagerOptions.gradClassName;
+        this.favInstructor = projectManagerOptions.favInstructor;
+        this.favFood = projectManagerOptions.favFood;
     }
-    standUp() {
-
+    standUp(channel) {
+        console.log(`${this.name} announces to ${channel}, @channel standby times!`)
     }
-    debugsCode() {
+    debugsCode(student, subject) {
+        console.log(`${this.name} debugs ${student.name} 's code on ${subject}`)
 
     }
 };
@@ -134,7 +135,7 @@ const josh = new Instructor({
     age: 40,
     favLanguage: 'JavaScript',
     specialty: 'Front-end',
-    catchPhrase: `Trees in the Forest`
+    catchPhrase: `Trees in the Forest`,
     pastTime: 'Being a Dad',
 });
 
@@ -144,7 +145,7 @@ const candace = new Student({
     age: 34,
     previousBackground: 'Mortgage Analyst',
     className: 'CS132',
-    favSubjects: ['Html', 'CSS', 'JavaScript'],
+    favSubjects: ['Html', 'CSS', 'JavaScript']
 });
 
 const majai = new Student({
@@ -156,17 +157,32 @@ const majai = new Student({
     favSubjects: ['Javascript, Java, Computer Science']
 });
 
-const nick = new ProjectManager({
+const nick = new projectManager({
     name: 'Nick',
-    location: "Texas",
+    location: "New Mexico",
+    favLanguage: 'JavaScript',
+    specialty: 'Back-end',
     gradClassName: 'CS1',
-    favInstructor: 'Sean',
+    favInstructor: 'Luis'
 });
 
-const Brandy = new ProjectManager({
+const brandy = new projectManager({
     name: 'Brandy',
     location: "San Francisco",
+    favLanguage: 'JavaScript',
+    specialty: 'Front-end',
     gradClassName: 'CS2',
     favInstructor: 'Dan',
-    favFood: 'Nano Chips',
+    favFood: 'Nano Chips'
 });
+
+console.log(dan.location); // 'TEXAS'
+console.log(dan.demo('Computer Science')); // `Today we are learning about Computer Science'
+console.log(josh.grade(majai, 'Javascript')); // 'Majai receives a perfect score on Javascript'
+console.log(candace.previousBackground); // 'Mortgage Analyst'
+console.log(nick.specialty); // 'Back-end'
+console.log(brandy.debugsCode(candace, 'Javascript')); // `Nick debugs Candace s code on Javascript`
+console.log(nick.standUp("Web 21")); // 'Brandy announces to Web 21, @channel standby times!'
+console.log(majai.sprintChallenge('Javascript')); // 'Majai has begun sprint challenge on Javascript'
+console.log(candace.PRAssignment('CSS')); // 'Candace has submitted a PR for CSS'
+console.log(majai.favSubjects); //'Javascript, Java, Computer Science'

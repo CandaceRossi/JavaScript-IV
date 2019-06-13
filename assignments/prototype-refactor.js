@@ -44,9 +44,9 @@ class GameObject {
 */
 // Sets up inheritance with GameObject
 
-class CharacterStats extends Gameobject {
+class CharacterStats extends GameObject {
     constructor(characterStatsOptions) {
-        super(this, characterStatsOptions);
+        super(characterStatsOptions);
         this.healthPoints = characterStatsOptions.healthPoints;
     }
     takeDamage() {
@@ -65,7 +65,7 @@ class CharacterStats extends Gameobject {
 */
 class Humanoid extends CharacterStats {
     constructor(humanoidOptions) {
-        super(this, humanoidOptions);
+        super(humanoidOptions);
         this.team = humanoidOptions.team;
         this.weapons = humanoidOptions.weapons;
         this.language = humanoidOptions.language;
