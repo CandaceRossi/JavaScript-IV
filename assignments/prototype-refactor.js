@@ -24,7 +24,7 @@ Each constructor function has unique properties and methods that are defined in 
   * dimensions (These represent the character's size in the video game)
   * destroy() // prototype method -> returns the string 'GameObject was removed from the game.' 
 */
-class GameObject() {
+class GameObject {
     constructor(options) {
         this.createdAt = options.createdAt;
         this.dimensions = options.dimensions;
@@ -44,7 +44,7 @@ class GameObject() {
 */
 // Sets up inheritance with GameObject
 
-class CharacterStats extends Gameobject() {
+class CharacterStats extends Gameobject {
     constructor(characterStatsOptions) {
         super(this, characterStatsOptions);
         this.healthPoints = characterStatsOptions.healthPoints;
@@ -63,7 +63,7 @@ class CharacterStats extends Gameobject() {
 * should inherit destroy() from GameObject through CharacterStats
 * should inherit takeDamage() from CharacterStats
 */
-class Humanoid extends CharacterStats() {
+class Humanoid extends CharacterStats {
     constructor(humanoidOptions) {
         super(this, humanoidOptions);
         this.team = humanoidOptions.team;
